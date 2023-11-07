@@ -10,7 +10,7 @@ interface InputProps {
     disable?: boolean,
     formatPrice?: boolean,
     required?: boolean,
-    redister: UseFormRegister<FieldValues>,
+    register: UseFormRegister<FieldValues>,
     errors: FieldValues
 
 }
@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = ({
     disable,
     formatPrice,
     required,
-    redister,
+    register,
     errors
 }) => {
 
@@ -38,7 +38,7 @@ const Input: React.FC<InputProps> = ({
             <input
                 id={id}
                 disabled={disable}
-                {...redister(id, { required })}
+                {...register(id, { required })}
                 placeholder=' '
                 type={type}
                 className={

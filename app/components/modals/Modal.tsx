@@ -96,6 +96,7 @@ const Modal: React.FC<ModalProps> = ({
                                         )}
                                     <Button label={actionLabel} onClick={handleSubmit} />
                                 </div>
+                                {footer}
                             </div>
                         </div>
                     </div>
