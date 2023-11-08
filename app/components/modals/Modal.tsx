@@ -36,7 +36,7 @@ const Modal: React.FC<ModalProps> = ({
                 onClose()
             }, 300)
         }
-    }, [])
+    }, [showModal])
 
     const handleSubmit = useCallback(() => {
         if (disable) {
