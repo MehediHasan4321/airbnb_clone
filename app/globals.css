@@ -6,3 +6,9 @@ html,body,:root{
   height: 100%;
 }
 
+.leaflet-botton,
+.leaflet-center,
+.leaflet-pane,
+.leaflet-top {
+  z-index: 0 !important;
+}
