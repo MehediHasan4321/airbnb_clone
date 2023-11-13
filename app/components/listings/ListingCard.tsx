@@ -1,26 +1,27 @@
 'use client'
-import { Listing, Reservation, User } from "@prisma/client";
+
 import { useRouter } from "next/navigation";
 import useContries from "@/app/hooks/useCountries";
 import { useCallback, useMemo } from "react";
 import { format } from 'date-fns'
 import Image from "next/image";
 import HeartButton from "./HeartButton";
-import { SafeListing, SafeUser } from "@/app/types";
+import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import Button from "../Button";
 
 interface ListingCardProps {
     data: SafeListing
-    reservation: Reservation
+    reservation: SafeReservation
     onAction?: (id: string) => void
     disable?: boolean
     actionLabel?: string
     actionId?: string
     currentUser?: SafeUser | null
+    isLoading?:boolean
 
 }
 
-const ListingCard: React.FC<ListingCardProps> = ({ data, reservation, onAction, disable, actionId = '', actionLabel, currentUser }) => {
+const ListingCard: React.FC<ListingCardProps> = ({ data, reservation, onAction, disable, actionId = '', actionLabel, currentUser,isLoading }) => {
 
     const router = useRouter()
     const { getByValue } = useContries()
@@ -50,7 +51,7 @@ const ListingCard: React.FC<ListingCardProps> = ({ data, reservation, onAction, 
         const strt = new Date(reservation.startDate)
         const end = new Date(reservation.endDate)
 
-        return `${format(strt, 'pp')}-${format(end, 'pp')}`
+        return `${format(strt, 'PP')} - ${format(end, 'PP')}`
 
     }, [reservation])
 
@@ -103,6 +104,7 @@ const ListingCard: React.FC<ListingCardProps> = ({ data, reservation, onAction, 
                         small
                         label={actionLabel}
                         onClick={handleCancle}
+                        isLoading={isLoading}
                         />
                     )
                 }

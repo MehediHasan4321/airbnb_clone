@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Nunito } from 'next/font/google'
+import { Manrope } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/navbar/navbar'
 import ClientOnly from './components/ClientOnly'
@@ -9,7 +9,7 @@ import LoginModal from './components/modals/LoginModal'
 import getCurrentUser from './actions/getCurrentUser'
 import RentModal from './components/modals/RentModal'
 
-const font = Nunito({ subsets: ['latin'] })
+const font = Manrope({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Airbnb Clone',
