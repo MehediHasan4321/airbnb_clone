@@ -6,11 +6,11 @@ import { useCallback, useMemo } from "react";
 import { format } from 'date-fns'
 import Image from "next/image";
 import HeartButton from "./HeartButton";
-import { SafeUser } from "@/app/types";
+import { SafeListing, SafeUser } from "@/app/types";
 import Button from "../Button";
 
 interface ListingCardProps {
-    data: Listing
+    data: SafeListing
     reservation: Reservation
     onAction?: (id: string) => void
     disable?: boolean

@@ -28,6 +28,7 @@ export default async function Home() {
             listings.map((listing: any) => <ListingCard
               key={listing.id}
               data={listing}
+              //@ts-ignore
               currentUser={currentUser}
             />)
           }
