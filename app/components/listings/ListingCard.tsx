@@ -11,7 +11,7 @@ import Button from "../Button";
 
 interface ListingCardProps {
     data: SafeListing
-    reservation: SafeReservation
+    reservation?: SafeReservation
     onAction?: (id: string) => void
     disable?: boolean
     actionLabel?: string
