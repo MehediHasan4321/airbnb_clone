@@ -117,8 +117,12 @@ const SearchModal = () => {
                 onChange={(value) => setLocation(value as CountrySelectValue)}
             />
             <hr />
-            
-            <Map center={location?.latlng} />
+
+            <Map
+                //@ts-ignore
+                center={location?.latlan}
+
+            />
 
         </BodyContainer>
     )
@@ -173,7 +177,7 @@ const SearchModal = () => {
     }
 
 
-   
+
 
 
     return (
