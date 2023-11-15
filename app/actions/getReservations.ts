@@ -16,7 +16,7 @@ const getReservations = async (params: IParams) => {
             query.listingId = listingId
         }
         if (userId) {
-            query.userId = userId
+            query.useId = userId
         }
         if (authorId) {
             query.listing={useId:authorId}

@@ -1,19 +1,31 @@
 import prisma from '@/app/libs/prismadb'
 
 
-const getListings = async () => {
+export interface IListingParams {
+    userId?: string
+}
+
+const getListings = async (params:IListingParams) => {
 
     try {
 
+        const { userId } = params
+        let query: any = {}
+
+        if (userId) {
+            query.useId = userId
+        }
+
         const listings = await prisma.listing.findMany({
+            where:query,
             orderBy: {
                 createAt: 'desc'
             }
         })
 
-        const safeListings = listings.map(listing=>({
+        const safeListings = listings.map(listing => ({
             ...listing,
-            createAt:listing.createAt.toISOString()
+            createAt: listing.createAt.toISOString()
         }))
 
         return safeListings

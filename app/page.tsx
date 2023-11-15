@@ -1,14 +1,22 @@
 
 import getCurrentUser from './actions/getCurrentUser'
-import getListings from './actions/getListings'
+import getListings, { IListingParams } from './actions/getListings'
 import ClientOnly from './components/ClientOnly'
 import Container from './components/Container'
 import EmptyStore from './components/EmptyStore'
 import ListingCard from './components/listings/ListingCard'
-export default async function Home() {
+import ResponsiveModel from './utils/ResponsiveModel'
 
-  const listings = await getListings()
+
+
+interface HomeProps {
+  searchParams: IListingParams
+}
+
+const Home:React.FC<HomeProps> = async ({ searchParams }) => {
   const currentUser = await getCurrentUser()
+  const listings = await getListings(searchParams)
+  
 
   if (listings.length === 0) {
     return (
@@ -23,17 +31,22 @@ export default async function Home() {
   return (
     <ClientOnly>
       <Container>
-        <div className='pt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8'>
-          {
-            listings.map((listing: any) => <ListingCard
-              key={listing.id}
-              data={listing}
-              //@ts-ignore
-              currentUser={currentUser}
-            />)
-          }
+        <div className='pt-14'>
+          <ResponsiveModel>
+            {
+              listings.map((listing: any) => <ListingCard
+                key={listing.id}
+                data={listing}
+                //@ts-ignore
+                currentUser={currentUser}
+              />)
+            }
+          </ResponsiveModel>
         </div>
       </Container>
     </ClientOnly>
   )
 }
+
+
+export default Home
